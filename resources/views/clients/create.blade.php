@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 <label for="image_url" class="form-label label-input">Foto: </label>
-                <input type="file" id="image_url" name="image_url" class="form-control @error('inage_url') is-invalid @enderror" accept="image/png, image/jpeg, image/jpg" />
+                <input type="file" id="image_url" name="image_url" class="form-control @error('image_url') is-invalid @enderror" accept="image/png, image/jpeg, image/jpg" />
                 @error('image_url')
                     <x-error> {{ $message }} </x-error>
                 @enderror
