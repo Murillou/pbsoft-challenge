@@ -1,4 +1,4 @@
-# Gerenciador de Clientes
+# Gerenciador de Clientes - PBSoft Challenge
 
 
 > Este projeto é uma solução para o desafio técnico proposto pela PBSoft, desenvolvido utilizando o framework Laravel.
@@ -7,10 +7,11 @@
 
 - [Laravel](https://laravel.com/) – Framework PHP para desenvolvimento web
 - [PHP](https://www.php.net/) – Linguagem de programação
+- [Bootstrap](https://getbootstrap.com/) – Framework CSS para design responsivo
 - [Composer](https://getcomposer.org/) – Gerenciador de dependências PHP
 - [MySQL](https://www.mysql.com/) – Sistema de gerenciamento de banco de dados
-- [Vite](https://vitejs.dev/) – Ferramenta de build frontend
-
+- [Node.js](https://nodejs.org/) – Ambiente de execução JavaScript
+- [npm](https://www.npmjs.com/) – Gerenciador de pacotes JavaScript
 
 ## Desenvolvimento
 
