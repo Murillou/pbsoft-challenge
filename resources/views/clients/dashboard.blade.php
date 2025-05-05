@@ -1,6 +1,12 @@
-<x-layout title="Home">
+<x-layout title="Dashboard">
     <div class="container py-4">
         <h2 class="h3 text-secondary mb-4">Clientes Cadastrados</h2>
+
+        @if($clients->isEmpty())
+            <div class="alert alert-warning" role="alert">
+                Não há clientes cadastrados.
+            </div>
+        @endif
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             @foreach($clients as $client)
@@ -8,7 +14,7 @@
                     <div class="card shadow-sm border-0 rounded-3 h-100 p-3">
                         <div class="d-flex align-items-center gap-3 mb-3">
                             <img
-                                src="{{ $client->image_url ?? asset('images/default-avatar.webp') }}"
+                                src="{{ $client->image_url ? asset('storage/' . $client->image_url) : asset('images/default-avatar.webp') }}"
                                 alt="Foto de {{ $client->name }}"
                                 class="rounded-circle"
                                 style="width:60px;height:60px;object-fit:cover;"

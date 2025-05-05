@@ -7,11 +7,18 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="d-flex flex-column min-vh-100">
-    @if(route('home'))
-        <nav>
+    <nav>
+        <a href="{{ route('dashboard') }}" class="text-decoration-none">
             <h1 class="display-4 text-primary text-center pt-2">Gerenciador de Clientes</h1>
-        </nav>
+        </a>
+    </nav>
+
+    @if (session('success'))
+        <div class="alert alert-success text-center mt-4">
+            {{ session('success') }}
+        </div>
     @endif
+
     <main class="container d-flex justify-content-center align-items-center flex-grow-1 pt-4">
         {{ $slot }}
     </main>
