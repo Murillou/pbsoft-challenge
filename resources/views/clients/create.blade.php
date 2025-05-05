@@ -14,7 +14,7 @@
                 <label for="birthday" class="form-label label-input">Data de nascimento: </label>
                 <input type="date" name="birthday" id="birthday" class="form-control @error('birthday') is-invalid @enderror" value="{{ old('birthday') }}" required>
                 @error('birthday')
-                    <x-error> {{ $message }}}</x-error>
+                    <x-error> {{ $message }} </x-error>
                 @enderror
             </div>
 
