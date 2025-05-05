@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientValidateRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,9 @@ class ClientController extends Controller
 {
     public function index()
     {
-        //
+        $clients = Client::all();
+
+        return view('clients.home', compact('clients'));
     }
 
     public function create()
@@ -17,41 +20,32 @@ class ClientController extends Controller
         return view('clients.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ClientValidateRequest $request)
     {
-        //
-    }
+        $data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     */
+        if ($request->hasFile('image_url')) {
+            $data['image_url'] = $request->file('image_url')->store('images', 'public');
+        }
+
+        $data['social_name'] = $request->input('social_name') ?? null;
+
+        Client::create($data);
+
+        return redirect()->route('home');
+    }
     public function show(Client $client)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Client $client)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Client $client)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Client $client)
     {
         //
