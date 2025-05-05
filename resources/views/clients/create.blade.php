@@ -1,6 +1,6 @@
 <x-layout title="Cadastrar">
     <div class="card p-4 shadow form-auth-card">
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('clients.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name" class="form-label label-input">Nome completo: </label>
@@ -23,8 +23,8 @@
             </div>
 
             <div class="form-group">
-                <label for="social-name">Nome social: </label>
-                <input type="text" id="social-name" name="social-name" class="form-control">
+                <label for="social_name">Nome social: </label>
+                <input type="text" id="social_name" name="social_name" class="form-control">
             </div>
 
             <button type="submit" class="btn btn-primary w-100 mt-3">Registrar</button>
