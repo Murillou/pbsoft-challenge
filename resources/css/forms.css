@@ -1,0 +1,12 @@
+.form-auth-card {
+    width: 100%;
+    max-width: 25rem;
+}
+
+.label-input {
+    cursor: pointer;
+}
+
+.form-group{
+    margin-top: 1rem;
+}
