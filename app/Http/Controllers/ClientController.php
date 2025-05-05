@@ -32,22 +32,27 @@ class ClientController extends Controller
 
         Client::create($data);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Cliente cadastrado com sucesso!');
     }
     public function show(Client $client)
     {
-        //
+        return view('clients.show', compact('client'));
     }
     public function edit(Client $client)
     {
-        //
+        return view('clients.edit', compact('client'));
     }
-    public function update(Request $request, Client $client)
+    public function update(ClientValidateRequest $request, Client $client)
     {
-        //
+        $data = $request->validated();
+        $client->update($data);
+
+        return redirect()->route('home')->with('success', 'Cliente atualizado com sucesso!');
     }
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success', 'Cliente deletado com sucesso.');
     }
 }
