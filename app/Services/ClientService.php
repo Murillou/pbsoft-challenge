@@ -2,6 +2,7 @@
 
 namespace App\Services;
 use App\Models\Client;
+use Illuminate\Support\Facades\Storage;
 
 class ClientService
 {
@@ -19,13 +20,17 @@ class ClientService
 
     public function updateClient(array $data, Client $client)
     {
-        $data = $this->attachImage($data);
+        if (isset($data['image_url'])) {
+            $this->deleteImageStorage($client);
+            $data = $this->attachImage($data);
+        }
 
         $client->update($data);
     }
 
     public function deleteClient(Client $client)
     {
+        $this->deleteImageStorage($client);
         $client->delete();
     }
     public function attachImage(array $data): array
@@ -36,4 +41,11 @@ class ClientService
 
         return $data;
     }
+    private function deleteImageStorage(Client $client)
+    {
+        if ($client->image_url && Storage::disk('public')->exists($client->image_url)) {
+            Storage::disk('public')->delete($client->image_url);
+        }
+    }
+
 }
