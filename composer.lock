@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3f0f14eea2b970a41d074feeeb6babb",
+    "content-hash": "f904aa0a374293a3dbb288d08d41d133",
     "packages": [
         {
             "name": "bissolli/validador-cpf-cnpj",
