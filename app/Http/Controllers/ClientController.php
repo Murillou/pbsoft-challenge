@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientValidateRequest;
 use App\Models\Client;
-
+use App\Services\ClientService;
 class ClientController extends Controller
 {
-    public function index()
+    public function index(ClientService $clientService)
     {
-        $clients = Client::all();
+        $clients = $clientService->getAllClients();
 
         return view('clients.dashboard', compact('clients'));
     }
@@ -19,15 +19,9 @@ class ClientController extends Controller
         return view('clients.create');
     }
 
-    public function store(ClientValidateRequest $request)
+    public function store(ClientValidateRequest $request, ClientService $clientService)
     {
-        $data = $request->validated();
-
-        if ($request->hasFile('image_url')) {
-            $data['image_url'] = $this->storeImage($request);
-        }
-
-        Client::create($data);
+        $clientService->createClient($request->validated());
 
         return redirect()->route('dashboard')->with('success', 'Cliente cadastrado com sucesso!');
     }
@@ -39,28 +33,16 @@ class ClientController extends Controller
     {
         return view('clients.edit', compact('client'));
     }
-    public function update(ClientValidateRequest $request, Client $client)
+    public function update(ClientValidateRequest $request, Client $client, ClientService $clientService)
     {
-        $data = $request->validated();
-
-        if ($request->hasFile('image_url')) {
-            $data['image_url'] = $this->storeImage($request);
-        }
-
-        $client->update($data);
+        $clientService->updateClient($request->validated(), $client);
 
         return redirect()->route('dashboard')->with('success', 'Cliente atualizado com sucesso!');
     }
-    public function destroy(Client $client)
+    public function destroy(Client $client, ClientService $clientService)
     {
-        $client->delete();
+        $clientService->deleteClient($client);
 
-        return redirect()->route('clients.index')->with('success', 'Cliente deletado com sucesso.');
-    }
-    public function storeImage(ClientValidateRequest $request)
-    {
-        $request->validated();
-
-        return$request->file('image_url')->store('images', 'public');
+        return redirect()->route('dashboard')->with('success', 'Cliente deletado com sucesso.');
     }
 }
