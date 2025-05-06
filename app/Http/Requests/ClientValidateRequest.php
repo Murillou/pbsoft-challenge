@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DocumentValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -23,11 +24,11 @@ class ClientValidateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:4', 'max:255'],
+            'name' => ['required', 'string', 'min:4', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'birthday' => ['required', 'date', 'before:today'],
-            'document' => ['required', 'string', 'min:11', 'max:20', Rule::unique('clients')->ignore($this->client)],
+            'document' => ['required', 'string', new DocumentValidator, Rule::unique('clients')->ignore($this->client)],
             'image_url' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'social_name' => ['nullable', 'string', 'min:4', 'max:255']
+            'social_name' => ['nullable', 'string', 'min:4', 'max:255', 'regex:/^[a-zA-Z\s]+$/']
         ];
     }
 }
