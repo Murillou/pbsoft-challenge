@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DocumentValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,7 +26,7 @@ class ClientValidateRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:4', 'max:255'],
             'birthday' => ['required', 'date', 'before:today'],
-            'document' => ['required', 'string', 'min:11', 'max:20', Rule::unique('clients')->ignore($this->client)],
+            'document' => ['required', 'string', new DocumentValidator, Rule::unique('clients')->ignore($this->client)],
             'image_url' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'social_name' => ['nullable', 'string', 'min:4', 'max:255']
         ];
