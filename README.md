@@ -18,9 +18,13 @@
 O projeto ainda está em desenvolvimento
 
 - [x] Criação de cliente
+- [x] Edição de cliente
+- [x] Deletar cliente
+- [x] Visualizar cliente individualmente
+- [x] Listagem de clientes
 - [x] Validação descritiva dos erros
 - [x] Validação de formulário através do request no back-end
-- [x] Listagem de clientes
+- [x] Tratamento de imagens
 
 ## Pré-requisitos
 
@@ -57,11 +61,8 @@ php artisan migrate
 # Instale as dependências frontend
 npm install
 
-# Compile os arquivos com Vite
-npm run dev
-
-# Inicie o servidor
-php artisan serve
+# Compile os arquivos com Vite e inicie o servidor
+composer run dev
 ```
 
 ### Desenvolvido com 💙 por Murillo Vinícius
